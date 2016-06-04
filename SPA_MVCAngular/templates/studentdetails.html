@@ -1,0 +1,34 @@
+﻿<div>
+    <div>
+        <br /><br />
+        <div><b><u>Student Details</u></b></div>
+        <div><b>Student ID : </b>{{student.ID}}</div>
+        <div><b>Name : </b>{{student.FirstName}}</div>
+        <div><b>LastName : </b>{{student.LastName}}</div>
+        <div><b>Gender : </b>{{student.Gender}}</div>
+        <div><b>Age : </b>{{student.Age}}</div>
+        <div class="col-md-4 col-md-offset-4"><b><a href="#/addstudetails/{{student.ID}}">Add {{student.FirstName}} Details</a></b></div>
+        <br />
+        <table>
+            <tr>
+                <th>Student Details ID</th>
+                <th>Address 1</th>
+                <th>Address 2</th>
+                <th>Material Status</th>
+                <th>Action</th>
+            </tr>
+            <tbody>
+                <tr ng-repeat="item in student.studentDetails">
+                    <td>{{item.StudentDetailID}}</td>
+                    <td>{{item.Address1}}</td>
+                    <td>{{item.Address2}}</td>
+                    <td>{{item.Married}}</td>
+                    <td>
+                        <input type="button" class="btn btn-danger btn-xs"
+                               value="[x] delete" ng-click="Remove(item.ID)" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

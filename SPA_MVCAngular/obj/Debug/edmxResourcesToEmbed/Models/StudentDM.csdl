@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SchoolEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Students" EntityType="SchoolModel.Student" />
+    <EntitySet Name="studentDetails" EntityType="SchoolModel.studentDetail" />
+    <EntitySet Name="sysdiagrams" EntityType="SchoolModel.sysdiagram" />
+    <AssociationSet Name="FK_studentDetail_Student" Association="SchoolModel.FK_studentDetail_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="studentDetail" EntitySet="studentDetails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="studentDetails" Relationship="SchoolModel.FK_studentDetail_Student" FromRole="Student" ToRole="studentDetail" />
+  </EntityType>
+  <EntityType Name="studentDetail">
+    <Key>
+      <PropertyRef Name="StudentDetailID" />
+    </Key>
+    <Property Name="StudentDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="Address1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Address2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Married" Type="Boolean" />
+    <NavigationProperty Name="Student" Relationship="SchoolModel.FK_studentDetail_Student" FromRole="studentDetail" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_studentDetail_Student">
+    <End Type="SchoolModel.Student" Role="Student" Multiplicity="0..1" />
+    <End Type="SchoolModel.studentDetail" Role="studentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="studentDetail">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,28 @@
+﻿<form name="AddStuDetails" role="form" style="margin-top:50px;">
+    <div class="form-group">
+        <label for="lblStudentID">Student ID</label>
+        <label for="lblStudentID">{{studetail.studentId}}</label>
+    </div>
+    <div class="form-group">
+        <label for="inpAddress1">Address 1</label>
+        <input type="text" ng-model="studetail.address1" class="form-control" name="address1" required />
+        <!--<span style="color:red" ng-show="Addstudetail.fname.$dirty && Addstudetail.fname.$invalid">
+            <span ng-show="Addstudetail.fname.$error.required">Student First name is required</span>
+        </span>-->
+    </div>
+    <div class="form-group">
+        <label for="inpAddress2">Address 2</label>
+        <input type="text" ng-model="studetail.address2" class="form-control" name="address2" required />
+        <!--<span style="color:red" ng-show="Addstudetail.lname.$dirty && Addstudetail.lname.$invalid">
+            <span ng-show="Addstudetail.lname.$error.required">Student First name is required</span>
+        </span>-->
+    </div>
+    <div class="form-group">
+        <label for="inpMarried">Married :</label>
+        <input id="inpMarried" type="checkbox"  ng-model="studetail.married" name="Married" />
+    </div>   
+</form>
+<input type="submit" id="btnAddstudetail" class="btn btn-primary"
+       value="Add studentdetails" ng-click="Add()">
+       <!--ng-distable="Addstudetail.fname.$dirty && Addstudetail.fname.$invalid"-->
+       
